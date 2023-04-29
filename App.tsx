@@ -1,4 +1,3 @@
-import { View } from 'react-native';
 import { NativeBaseProvider } from 'native-base';
 import {
   useFonts,
@@ -7,7 +6,7 @@ import {
 } from '@expo-google-fonts/roboto';
 
 import { THEME } from './src/theme';
-import { Form } from '@components/Form';
+import { SignIn } from '@screens/SignIn';
 import { Loading } from '@components/Loading';
 
 export default function App() {
@@ -15,7 +14,7 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-      {fontsLoaded ? <Form /> : <Loading />}
+      {fontsLoaded ? <SignIn /> : <Loading />}
     </NativeBaseProvider>
   );
 }
