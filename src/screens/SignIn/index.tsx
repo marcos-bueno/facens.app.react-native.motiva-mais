@@ -10,7 +10,7 @@ type AuthResponse = {
   type: string;
 };
 
-export function Form() {
+export function SignIn() {
   const [userData, setUserData] = useState();
 
   async function handleGoogleSignIn() {
