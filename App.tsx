@@ -7,6 +7,7 @@ import {
 } from '@expo-google-fonts/roboto';
 
 import { THEME } from './src/theme';
+import { Form } from '@components/Form';
 import { Loading } from '@components/Loading';
 
 export default function App() {
@@ -14,7 +15,7 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-      {fontsLoaded ? <View /> : <Loading />}
+      {fontsLoaded ? <Form /> : <Loading />}
     </NativeBaseProvider>
   );
 }
