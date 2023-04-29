@@ -2,6 +2,7 @@ import { useState } from 'react';
 import * as AuthSession from 'expo-auth-session';
 import { Button, Center } from 'native-base';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 type AuthResponse = {
   params: {
@@ -11,6 +12,7 @@ type AuthResponse = {
 };
 
 export function SignIn() {
+  const navigation = useNavigation();
   const [userData, setUserData] = useState();
 
   async function handleGoogleSignIn() {
@@ -34,6 +36,8 @@ export function SignIn() {
         );
 
         const user = await response.json();
+
+        navigation.navigate('home');
 
         setUserData(user);
       }
