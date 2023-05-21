@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import * as AuthSession from 'expo-auth-session';
 import { Button, Center } from 'native-base';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '@hooks/useAuth';
+import { UserDTO } from '@dtos/userDTO';
 
 type AuthResponse = {
   params: {
@@ -12,8 +12,7 @@ type AuthResponse = {
 };
 
 export function SignIn() {
-  const navigation = useNavigation();
-  const [userData, setUserData] = useState();
+  const { signIn } = useAuth();
 
   async function handleGoogleSignIn() {
     try {
@@ -35,11 +34,9 @@ export function SignIn() {
           `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${params.access_token}`
         );
 
-        const user = await response.json();
+        const user: UserDTO = await response.json();
 
-        navigation.navigate('home');
-
-        setUserData(user);
+        await signIn(user);
       }
     } catch (error) {
       console.log(error);
