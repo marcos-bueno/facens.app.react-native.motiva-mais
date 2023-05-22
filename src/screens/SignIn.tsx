@@ -1,8 +1,10 @@
 import * as AuthSession from 'expo-auth-session';
-import { Button, Center } from 'native-base';
+import { Button, Center, Box, Text } from 'native-base';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useAuth } from '@hooks/useAuth';
 import { UserDTO } from '@dtos/userDTO';
+import LogoSvg from '@assets/logo.svg';
+import { Input } from '@components/Input';
 
 type AuthResponse = {
   params: {
@@ -44,17 +46,35 @@ export function SignIn() {
   }
 
   return (
-    <Center flex={1} bg="green.700">
-      <Button
-        leftIcon={
-          <FontAwesome5 name="google" size={26} color="white" marginRight={6} />
-        }
-        colorScheme="red"
-        size="lg"
-        onPress={handleGoogleSignIn}
-      >
-        Entrar com Google
-      </Button>
+    <Center flex={1} bg="green.500">
+      <LogoSvg width={280} />
+      <Box py={35} px={35} h="50%" w="80%" bgColor="white" borderRadius={10}>
+        <Button
+          leftIcon={
+            <FontAwesome5
+              name="google"
+              size={26}
+              color="white"
+              marginRight={6}
+            />
+          }
+          colorScheme="coolGray"
+          rounded="full"
+          onPress={handleGoogleSignIn}
+        >
+          Fazer login com o Google
+        </Button>
+        <Center>
+          <Text my={5}>
+            --------------------------- ou ---------------------------
+          </Text>
+          <Input placeholder="Usuário" bg="gray.200" rounded="full" />
+          <Input placeholder="Senha" bg="gray.200" rounded="full" />
+          <Button colorScheme="green" rounded="full" w="60%" mt={5}>
+            LOGIN
+          </Button>
+        </Center>
+      </Box>
     </Center>
   );
 }
