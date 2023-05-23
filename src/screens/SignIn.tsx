@@ -1,10 +1,14 @@
-import * as AuthSession from 'expo-auth-session';
+import { TouchableOpacity } from 'react-native';
 import { Button, Center, Box, Text } from 'native-base';
+import * as AuthSession from 'expo-auth-session';
+import { useNavigation } from '@react-navigation/native';
 import { FontAwesome5 } from '@expo/vector-icons';
+
 import { useAuth } from '@hooks/useAuth';
 import { UserDTO } from '@dtos/userDTO';
 import LogoSvg from '@assets/logo.svg';
 import { Input } from '@components/Input';
+import { AuthNavigatorRoutesProps } from '@routes/auth.routes';
 
 type AuthResponse = {
   params: {
@@ -15,6 +19,7 @@ type AuthResponse = {
 
 export function SignIn() {
   const { signIn } = useAuth();
+  const navigation = useNavigation<AuthNavigatorRoutesProps>();
 
   async function handleGoogleSignIn() {
     try {
@@ -45,6 +50,10 @@ export function SignIn() {
     }
   }
 
+  function handleOpenSignUp() {
+    navigation.navigate('signUp');
+  }
+
   return (
     <Center flex={1} bg="green.500">
       <LogoSvg width={280} />
@@ -69,8 +78,20 @@ export function SignIn() {
             --------------------------- ou ---------------------------
           </Text>
           <Input placeholder="Usuário" bg="gray.200" rounded="full" />
-          <Input placeholder="Senha" bg="gray.200" rounded="full" />
-          <Button colorScheme="green" rounded="full" w="60%" mt={5}>
+          <Input
+            type="password"
+            placeholder="Senha"
+            bg="gray.200"
+            rounded="full"
+          />
+        </Center>
+        <TouchableOpacity onPress={handleOpenSignUp}>
+          <Text color="blue.500" textAlign="right">
+            Abra sua conta
+          </Text>
+        </TouchableOpacity>
+        <Center>
+          <Button colorScheme="green" rounded="full" w="60%" mt={6}>
             LOGIN
           </Button>
         </Center>

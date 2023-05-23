@@ -19,7 +19,6 @@ export function Input({ errorMessage = null, isInvalid, ...rest }: Props) {
         px={4}
         borderWidth={0}
         fontSize="md"
-        color="white"
         fontFamily="body"
         placeholderTextColor="gray.300"
         isInvalid={invalid}
@@ -28,7 +27,7 @@ export function Input({ errorMessage = null, isInvalid, ...rest }: Props) {
           borderColor: 'red.500',
         }}
         _focus={{
-          bg: 'gray.700',
+          bg: 'gray.200',
           borderWidth: 1,
           borderColor: 'green.500',
         }}
