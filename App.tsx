@@ -6,7 +6,8 @@ import {
 } from '@expo-google-fonts/roboto';
 
 import { THEME } from './src/theme';
-import { SignIn } from '@screens/SignIn';
+import { AuthContextProvider } from '@contexts/AuthContext';
+import { Routes } from '@routes/index';
 import { Loading } from '@components/Loading';
 
 export default function App() {
@@ -14,7 +15,9 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-      {fontsLoaded ? <SignIn /> : <Loading />}
+      <AuthContextProvider>
+        {fontsLoaded ? <Routes /> : <Loading />}
+      </AuthContextProvider>
     </NativeBaseProvider>
   );
 }
