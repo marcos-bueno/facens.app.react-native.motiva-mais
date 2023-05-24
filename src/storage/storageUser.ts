@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { USER_STORAGE } from '@storage/storageConfig';
 import { UserDTO } from '@dtos/userDTO';
 
-export async function storageUserSave(data: any) {
+export async function storageUserSave(data: UserDTO) {
   await AsyncStorage.setItem(USER_STORAGE, JSON.stringify(data));
 }
 
