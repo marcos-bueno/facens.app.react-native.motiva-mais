@@ -1,60 +1,56 @@
-import { Platform } from 'react-native';
+import { Box } from 'native-base';
 import {
-  createBottomTabNavigator,
-  BottomTabNavigationProp,
-} from '@react-navigation/bottom-tabs';
-import { useTheme } from 'native-base';
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItem,
+  DrawerContentComponentProps,
+  DrawerNavigationProp,
+} from '@react-navigation/drawer';
+import { FontAwesome, Feather } from '@expo/vector-icons';
 
 import { Home } from '@screens/Home';
 import { Quiz } from '@screens/Quiz';
-import HomeSvg from '@assets/home.svg';
 
 type AppRoutes = {
   home: undefined;
+  quiz: undefined;
 };
 
-export type AuthNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
+export type AuthNavigatorRoutesProps = DrawerNavigationProp<AppRoutes>;
 
-const { Navigator, Screen } = createBottomTabNavigator();
+const { Navigator, Screen } = createDrawerNavigator<AppRoutes>();
 
 export function AppRoutes() {
-  const { sizes, colors } = useTheme();
-  const iconSize = sizes[6];
+  function CustomDrawerContent(props: DrawerContentComponentProps) {
+    return (
+      <DrawerContentScrollView {...props}>
+        <Box mt={6}>
+          <DrawerItem
+            icon={() => <FontAwesome name="home" size={25} />}
+            label="Página Inicial"
+            onPress={() => {
+              props.navigation.navigate('home');
+            }}
+          />
+          <DrawerItem
+            icon={() => <Feather name="check-square" size={25} />}
+            label="Questionário"
+            onPress={() => {
+              props.navigation.navigate('quiz');
+            }}
+          />
+        </Box>
+      </DrawerContentScrollView>
+    );
+  }
 
   return (
     <Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarShowLabel: false,
-        tabBarActiveTintColor: colors.green[500],
-        tabBarInactiveTintColor: colors.gray[200],
-        tabBarStyle: {
-          backgroundColor: colors.gray[600],
-          borderTopWidth: 0,
-          height: Platform.OS === 'android' ? 'auto' : 96,
-          paddingBottom: sizes[10],
-          paddingTop: sizes[6],
-        },
-      }}
+      screenOptions={{ headerShown: false }}
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
-      <Screen
-        name="home"
-        component={Home}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <HomeSvg fill={color} width={iconSize} height={iconSize} />
-          ),
-        }}
-      />
-      <Screen
-        name="quiz"
-        component={Quiz}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <HomeSvg fill={color} width={iconSize} height={iconSize} />
-          ),
-        }}
-      />
+      <Screen name="home" component={Home} />
+      <Screen name="quiz" component={Quiz} />
     </Navigator>
   );
 }

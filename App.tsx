@@ -1,4 +1,5 @@
 import { NativeBaseProvider } from 'native-base';
+import 'react-native-gesture-handler';
 import { FugazOne_400Regular } from '@expo-google-fonts/fugaz-one';
 import { useFonts, Roboto_400Regular } from '@expo-google-fonts/roboto';
 
