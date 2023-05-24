@@ -1,31 +1,14 @@
-import { TouchableOpacity } from 'react-native';
-import { Center, Text, Image } from 'native-base';
-import { useAuth } from '@hooks/useAuth';
+import { VStack, Box } from 'native-base';
 
-import defaultUserPhotoImg from '@assets/userPhotoDefault.png';
+import { ScreenHeader } from '@components/ScreenHeader';
 
 export function Home() {
-  const { signOut, userData } = useAuth();
-
   return (
-    <Center flex={1}>
-      <Text mb={4}>Home</Text>
-      <Text mb={4}>Olá {userData.name}</Text>
-      <Image
-        w={16}
-        h={16}
-        mb={4}
-        rounded="full"
-        borderWidth={2}
-        borderColor="gray.400"
-        source={
-          userData.picture ? { uri: userData.picture } : defaultUserPhotoImg
-        }
-        alt="Imagem do usuário"
-      />
-      <TouchableOpacity onPress={signOut}>
-        <Text>Sair da área logada</Text>
-      </TouchableOpacity>
-    </Center>
+    <VStack bgColor="green.500">
+      <ScreenHeader />
+      <Box h="100%" py={35} px={35} bgColor="gray.200" borderRadius={20}>
+        {/* Conteúdo */}
+      </Box>
+    </VStack>
   );
 }

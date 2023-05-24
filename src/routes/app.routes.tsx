@@ -6,8 +6,9 @@ import {
   DrawerContentComponentProps,
   DrawerNavigationProp,
 } from '@react-navigation/drawer';
-import { FontAwesome, Feather } from '@expo/vector-icons';
+import { FontAwesome, Feather, MaterialIcons } from '@expo/vector-icons';
 
+import { useAuth } from '@hooks/useAuth';
 import { Home } from '@screens/Home';
 import { Quiz } from '@screens/Quiz';
 
@@ -21,6 +22,8 @@ export type AuthNavigatorRoutesProps = DrawerNavigationProp<AppRoutes>;
 const { Navigator, Screen } = createDrawerNavigator<AppRoutes>();
 
 export function AppRoutes() {
+  const { signOut } = useAuth();
+
   function CustomDrawerContent(props: DrawerContentComponentProps) {
     return (
       <DrawerContentScrollView {...props}>
@@ -38,6 +41,11 @@ export function AppRoutes() {
             onPress={() => {
               props.navigation.navigate('quiz');
             }}
+          />
+          <DrawerItem
+            icon={() => <MaterialIcons name="logout" size={25} />}
+            label="Sair"
+            onPress={signOut}
           />
         </Box>
       </DrawerContentScrollView>

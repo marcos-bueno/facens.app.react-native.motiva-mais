@@ -1,3 +1,4 @@
+import { StatusBar } from 'react-native';
 import { NativeBaseProvider } from 'native-base';
 import 'react-native-gesture-handler';
 import { FugazOne_400Regular } from '@expo-google-fonts/fugaz-one';
@@ -16,6 +17,11 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
       <AuthContextProvider>
         {fontsLoaded ? <Routes /> : <Loading />}
       </AuthContextProvider>
