@@ -21,7 +21,7 @@ export const THEME = extendTheme({
     },
   },
   fonts: {
-    heading: 'Roboto_700Bold',
+    heading: 'FugazOne_400Regular',
     body: 'Roboto_400Regular',
   },
   fontSizes: {

@@ -1,3 +1,4 @@
+import { TouchableOpacity } from 'react-native';
 import { Button, Center, Box, Text, Icon } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
@@ -5,7 +6,6 @@ import { Feather } from '@expo/vector-icons';
 import LogoSvg from '@assets/logo.svg';
 import { Input } from '@components/Input';
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes';
-import { TouchableOpacity } from 'react-native';
 
 export function SignUp() {
   const navigation = useNavigation<AuthNavigatorRoutesProps>();

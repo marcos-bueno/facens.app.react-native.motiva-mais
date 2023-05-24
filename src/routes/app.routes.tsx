@@ -6,7 +6,7 @@ import {
 import { useTheme } from 'native-base';
 
 import { Home } from '@screens/Home';
-import { Media } from '@screens/Media';
+import { Quiz } from '@screens/Quiz';
 import HomeSvg from '@assets/home.svg';
 
 type AppRoutes = {
@@ -47,8 +47,8 @@ export function AppRoutes() {
         }}
       />
       <Screen
-        name="media"
-        component={Media}
+        name="quiz"
+        component={Quiz}
         options={{
           tabBarIcon: ({ color }) => (
             <HomeSvg fill={color} width={iconSize} height={iconSize} />
